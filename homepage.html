@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Bookstore</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="hpcss.css">
+
+    
+
+</head>
+<body>
+    <div class="sticky discount">
+        <p>Special Offer! Get 20% off on your first purchase!</p>
+    </div>
+
+    <header class="sticky">
+        <!-- Glowing and zooming header text -->
+        <h1 class="text-3xl font-bold glowing-zoom-animation">API BOOKSTORE
+        </h1>
+        <nav>
+            
+            <div class="hamburger" id="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul>
+                <li ><a href="#community" onclick="toggleSidebar()">My Account</a></li>
+                <li><a href="javascript:void(0);" onclick="showAllBooks()">Home</a></li>
+                <li><a href="javascript:void(0);" onclick="showBestSellers()">Best Sellers</a></li>
+
+                <li><a href="javascript:void(0);" onclick="showNewArrivals()">New Arrivals</a></li>
+
+                <li >
+                    <a href="#">Categories</a>
+                    <div class="dropdown">
+                        <a href="javascript:void(0);" onclick="showCategory('fiction')">Fiction</a>
+                        <a href="javascript:void(0);" onclick="showCategory('non-fiction')">Non-Fiction</a>
+                        <a href="javascript:void(0);" onclick="showCategory('science')">Science</a>
+                        <a href="javascript:void(0);" onclick="showCategory('fantasy')">Fantasy</a>
+                        <a href="javascript:void(0);" onclick="showCategory('biography')">Biography</a>
+                    </div>
+                    
+                </li>
+                <li ><a href="#donateSection">Donate Books</a></li>
+
+                <li><a href="#exchangeBooksSection">Exchange Books</a></li>
+                <li><a id="communityEventsLink" href="javascript:void(0);" onclick="toggleCommunityEvents()">Community and Events</a></li>
+                <li><a href="#footer">Contact Us</a></li>
+            </ul>
+            
+        </nav>
+        <div class="search">
+            <input type="text" id="search-input" placeholder="Search for books...">
+            <button class="search-button" onclick="searchBooks()"></button>
+        </div>
+        <div class="badge">
+            India’s No. 1
+            
+          </div>
+      
+    </header>
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+        <h1>Account</h1>
+        <p><a href="#profile">Upander</a></p>
+        <p><a href="#orders">Orders</a></p>
+        <p><a href="#logout">Logout</a></p>
+    </div>
+
+    <main>
+        <div class="featured-books">
+            <div class="book-list" id="book-list">
+                <!-- Book 1 -->
+                <div class="book" data-category="bestseller">
+                    <img src="https://www.bookswagon.com/productimages/images200/986/9780143447986.jpg" alt="Book 1">
+                    <h3>30 Days to better english</h3>
+                    <p>Liwes Norman</p>
+                    <p>Price: Rs. 119</p>
+                    <button onclick="addToCart('30 Days to better english', 119)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                <!-- Book 2 -->
+                <div class="book" data-category="bestseller">
+                    <img src="https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/086/9780241252086.jpg" alt="Book 2">
+                    <h3>White Nights</h3>
+                    <p>Ronald Mayer</p>
+                    <p>Price: Rs. 75</p>
+                    <button onclick="addToCart('White Nights', 75)">Add to Cart</button>
+                    <div class="review-section">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                </div>
+                <!-- Book 3 -->
+                <div class="book" data-category="new-arrival">
+                    <img src="https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/538/9780593357538.jpg" alt="Book 3">
+                    <h3>Fire & Blood</h3>
+                    <p>George .R.R</p>
+                    <p>Price: Rs. 450</p>
+                    <button onclick="addToCart('Fire & Blood', 450)">Add to Cart</button>
+                    <div class="review-section">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                </div>
+                <!-- Book 4 -->
+                <div class="book" data-category="new-arrival">
+                    <img src="https://www.bookswagon.com/productimages/images200/478/9789355991478.jpg" alt="Book 4">
+                    <h3>Ikigia</h3>
+                    <p>Keira Miki</p>
+                    <p>Price: Rs. 950</p>
+                    <button onclick="addToCart('Ikigia', 950)">Add to Cart</button>
+                    <div class="review-section">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                </div>
+                <!-- New Arrivals -->
+
+<div class="book" data-category="new-arrival"> 
+  <img src="https://d25xohcupqd66a.cloudfront.net/medium/57_9780593056974_t1.jpg" alt="A Brief History of Time">
+  <h3>A Brief History of Time</h3>
+  <p>Stephen Hawking</p>
+  <p>Price: Rs. 600</p>
+  <button onclick="addToCart('A Brief History of Time', 600)">Add to Cart</button>
+  <div class="review-section">
+    <div class="rating">⭐⭐⭐⭐⭐</div>
+    <input type="text" class="review-input" placeholder="Write a review...">
+  </div>
+</div>
+<div class="book" data-category="new-arrival"> 
+  <img src="https://d25xohcupqd66a.cloudfront.net/medium/101_9780801879265_t1_1727320061.jpg" alt="The Selfish Gene">
+  <h3>The Selfish Gene</h3>
+  <p>Richard Dawkins</p>
+  <p>Price: Rs. 550</p>
+  <button onclick="addToCart('The Selfish Gene', 550)">Add to Cart</button>
+  <div class="review-section">
+    <div class="rating">⭐⭐⭐⭐⭐</div>
+    <input type="text" class="review-input" placeholder="Write a review...">
+  </div>
+</div>
+<div class="book" data-category="new-arrival"> 
+  <img src="https://d25xohcupqd66a.cloudfront.net/medium/101_9781138910874_t1_1727270506.jpg" alt="The Structure of Scientific Revolutions">
+  <h3>The Structure of Scientific Revolutions</h3>
+  <p>Thomas S. Kuhn</p>
+  <p>Price: Rs. 700</p>
+  <button onclick="addToCart('The Structure of Scientific Revolutions', 700)">Add to Cart</button>
+  <div class="review-section">
+    <div class="rating">⭐⭐⭐⭐⭐</div>
+    <input type="text" class="review-input" placeholder="Write a review...">
+  </div>
+</div>
+<div class="book" data-category="new-arrival"> 
+  <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS3e6ov_QsHnP649lKwpJesXcZtflFIgeDQ8U-NQzvcfuDkD5uxRFTKB-hTiwWF23KZBLQSjqDlmSrn7FSkl5ddLH8ZhWSiAaedjKXNWvo&usqp=CAE" alt="Cosmos">
+  <h3>Cosmos</h3>
+  <p>Carl Sagan</p>
+  <p>Price: Rs. 650</p>
+  <button onclick="addToCart('Cosmos', 650)">Add to Cart</button>
+  <div class="review-section">
+    <div class="rating">⭐⭐⭐⭐⭐</div>
+    <input type="text" class="review-input" placeholder="Write a review...">
+  </div>
+</div>
+<div class="book" data-category="new-arrival"> 
+  <img src="https://d25xohcupqd66a.cloudfront.net/medium/57_9780143422167_t1.jpg" alt="The Gene: An Intimate History">
+  <h3>The Gene: An Intimate History</h3>
+  <p>Siddhartha Mukherjee</p>
+  <p>Price: Rs. 700</p>
+  <button onclick="addToCart('The Gene: An Intimate History', 700)">Add to Cart</button>
+  <div class="review-section">
+    <div class="rating">⭐⭐⭐⭐⭐</div>
+    <input type="text" class="review-input" placeholder="Write a review...">
+  </div>
+</div>
+<div class="book" data-category="new-arrival"> 
+  <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRntjJzuz2yiBISLV18LaIXzQuYRoLFMLFGiVHpOdbhN6OZBAAdbY0sVmKeQnYVxW3UwDGJuX4K3UjvF4pKpjSo-GljshHO8yjcPUaol0BltxQmCJMxkmn6Ug&usqp=CAE" alt="The Immortal Life of Henrietta Lacks">
+  <h3>The Immortal Life of Henrietta Lacks</h3>
+  <p>Rebecca Skloot</p>
+  <p>Price: Rs. 600</p>
+  <button onclick="addToCart('The Immortal Life of Henrietta Lacks', 600)">Add to Cart</button>
+  <div class="review-section">
+    <div class="rating">⭐⭐⭐⭐⭐</div>
+    <input type="text" class="review-input" placeholder="Write a review...">
+  </div>
+</div>
+<div class="book" data-category="new-arrival"> 
+  <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS-fidkUSKODUX3zOqMScItuNs2465X0e1P8oNKH4_1aIpgytneCgqjkSZefoHtWkhsMRFPw_1S9sBKGcYSUUGfJXETT4WKhLNbRPekon5qmvFozzuqQDdFyg&usqp=CAE" alt="Astrophysics for People in a Hurry">
+  <h3>Astrophysics for People in a Hurry</h3>
+  <p>Neil deGrasse Tyson</p>
+  <p>Price: Rs. 650</p>
+  <button onclick="addToCart('Astrophysics for People in a Hurry', 650)">Add to Cart</button>
+  <div class="review-section">
+    <div class="rating">⭐⭐⭐⭐⭐</div>
+    <input type="text" class="review-input" placeholder="Write a review...">
+  </div>
+</div>
+<div class="book" data-category="new-arrival"> 
+  <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTC4FF2u-_4lu-_57_3YeZbc9BwP8ACxP4k4f32D-C-X1gwocaYmocuGECrc8j0ifndBg-hP05_SfE3GektENA7gF8hLdpWTmlSw7-rTK8&usqp=CAE" alt="The Body: A Guide for Occupants">
+  <h3>The Body: A Guide for Occupants</h3>
+  <p>Bill Bryson</p>
+  <p>Price: Rs. 650</p>
+  <button onclick="addToCart('The Body: A Guide for Occupants', 650)">Add to Cart</button>
+  <div class="review-section">
+    <div class="rating">⭐⭐⭐⭐⭐</div>
+    <input type="text" class="review-input" placeholder="Write a review...">
+  </div>
+</div>
+
+                <!-- Book 5 -->
+                <div class="book" data-category="fantasy">
+                    <img src="https://www.bookswagon.com/productimages/images200/181/9781405293181.jpg" alt="Book 5">
+                    <h3>A Good Girls Guide Murder</h3>
+                    <p>Holly Jackson</p>
+                    <p>Price: Rs. 324</p>
+                    <button onclick="addToCart('Book Title 5', 700)">Add to Cart</button>
+                    <div class="review-section">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                </div>
+                <!-- Book 6 -->
+                <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/652/9781408855652.jpg" alt="Harry Potter and the Sorcerer's Stone">
+                    <h3>Harry Potter and the Sorcerer's Stone</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price: Rs. 789</p>
+                    <button onclick="addToCart('Harry Potter and the Sorcerer\'s Stone', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/669/9781408855669.jpg" alt="Harry Potter and the Chamber of Secrets">
+                    <h3>Harry Potter and the Chamber of Secrets</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price: Rs. 690</p>
+                    <button onclick="addToCart('Harry Potter and the Chamber of Secrets', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/676/9781408855676.jpg" alt="Harry Potter and the Prisoner of Azkaban">
+                    <h3>Harry Potter and the Prisoner of Azkaban</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price: Rs. 386</p>
+                    <button onclick="addToCart('Harry Potter and the Prisoner of Azkaban', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/683/9781408855683.jpg" alt="Harry Potter and the Goblet of Fire">
+                    <h3>Harry Potter and the Goblet of Fire</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price: Rs. 540</p>
+                    <button onclick="addToCart('Harry Potter and the Goblet of Fire', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/690/9781408855690.jpg" alt="Harry Potter and the Order of the Phoenix">
+                    <h3>Harry Potter and the Order of the Phoenix</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price: Rs. 588</p>
+                    <button onclick="addToCart('Harry Potter and the Order of the Phoenix', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/706/9781408855706.jpg" alt="Harry Potter and the Half-Blood Prince">
+                    <h3>Harry Potter and the Half-Blood Prince</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price:Rs. 507</p>
+                    <button onclick="addToCart('Harry Potter and the Half-Blood Prince', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/713/9781408855713.jpg" alt="Harry Potter and the Deathly Hallows">
+                    <h3>Harry Potter and the Deathly Hallows</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price:Rs. 511</p>
+                    <button onclick="addToCart('Harry Potter and the Deathly Hallows', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/images200/713/9781408855713.jpg" alt="Fantastic Beasts and Where to Find Them">
+                    <h3>Fantastic Beasts and Where to Find Them</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price:Rs. 500</p>
+                    <button onclick="addToCart('Fantastic Beasts and Where to Find Them', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/293/9781526620293.jpg" alt="Quidditch Through the Ages">
+                    <h3>Quidditch Through the Ages</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price:Rs. 500</p>
+                    <button onclick="addToCart('Quidditch Through the Ages', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/362/9780751565362.jpg" alt="The Tales of Beedle the Bard">
+                    <h3>The Tales of Beedle the Bard</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price:Rs. 450</p>
+                    <button onclick="addToCart('The Tales of Beedle the Bard', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+              
+                  <div class="book" data-category="fiction"> 
+                    <img src="https://www.bookswagon.com/productimages/mainimages/289/9780143458289.jpg" alt="Harry Potter: A History of Magic">
+                    <h3>Harry Potter: A History of Magic</h3>
+                    <p>British Library</p>
+                    <p>Price:Rs. 601</p>
+                    <button onclick="addToCart('Harry Potter: A History of Magic', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                
+               
+                <div class="book" data-category="fantasy"> 
+                    <img src="https://www.bookswagon.com/productimages/images200/570/9788175993570.jpg" alt="The Hobbit">
+                    <h3>The Hobbit</h3>
+                    <p>J.R.R. Tolkien</p>
+                    <p>Price:Rs. 500</p>
+                    <button onclick="addToCart('The Hobbit', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="fantasy"> 
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTAxCq3AlqCIi9fMWLcZM5NuMcAZnv1MFr9c8tqPaa2JObzmvOJPQsFhYELdbybfWX1UGN4wN7jkh0P-68A9wUKiKkga09lB8O5UPNRKKJ9HDE4PrlLjX8vvA&usqp=CAE" alt="A Game of Thrones">
+                    <h3>A Game of Thrones</h3>
+                    <p>George R.R. Martin</p>
+                    <p>Price:Rs. 600</p>
+                    <button onclick="addToCart('A Game of Thrones', 600)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="fantasy"> 
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTMzzI_lX_lAA_nZoX4GRaGFOxMQmj8MHkMnT1YYYQmO_4cK8mZm-iqQIBSnTFB---bFsQneA8KMM_ioFDm3y7v2A4K6dwVyRVWBH7Fh4K1Cw60EXXVEm32CQ&usqp=CAE" alt="Harry Potter and the Sorcerer's Stone">
+                    <h3>Harry Potter and the Sorcerer's Stone</h3>
+                    <p>J.K. Rowling</p>
+                    <p>Price:Rs. 500</p>
+                    <button onclick="addToCart('Harry Potter and the Sorcerer\'s Stone', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="fantasy"> 
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQnGGqcDu6p6NXzLmHWmcbS9b-i5bmhxR2snxxUk36qG4mTlV7BTFGNdxc199yPFv5FRKnyorStP5LhdRH3SUQEs4K3NIa9QuG7cnOQITWX&usqp=CAE" alt="The Name of the Wind">
+                    <h3>The Name of the Wind</h3>
+                    <p>Patrick Rothfuss</p>
+                    <p>Price:Rs. 550</p>
+                    <button onclick="addToCart('The Name of the Wind', 550)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="fantasy"> 
+                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQIdY3kDVEKvIrh4qm6GWMPEgxOhJfzKQOnGyqKxyk0ah_SxFzROGTLUYyL5aUyX2c1Z_L4YvKNs8eevhM2x58eIdGgW4gq5_7KwWuMOkyNLmskodNjD7CSAw&usqp=CAE" alt="Mistborn: The Final Empire">
+                    <h3>Mistborn: The Final Empire</h3>
+                    <p>Brandon Sanderson</p>
+                    <p>Price:Rs. 620</p>
+                    <button onclick="addToCart('Mistborn: The Final Empire', 620)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="fantasy"> 
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQsIDbUUFX1IgOfyw9JZGCCECIt2Nx2QXEaAsa6g2s8_W3ojVDmNdheilI7u0y9MeH2DhrntMu2ULx9HvkuptIdhANpHWFicr0zZHCJogYDV80mjFwtzjo_yQ&usqp=CAE" alt="The Way of Kings">
+                    <h3>The Way of Kings</h3>
+                    <p>Brandon Sanderson</p>
+                    <p>Price:Rs. 650</p>
+                    <button onclick="addToCart('The Way of Kings', 650)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="fantasy"> 
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT2hUqING8zoLHaPTOmwU3-64lzNRqJcDTs_6HxzQtU0_Vg2ZLCMxsHXju03oGXwzkjua-SGF-_qkKI3QyFrrkz3BfC1q_EPNZGjO2mBETF&usqp=CAE" alt="The Black Prism">
+                    <h3>The Black Prism</h3>
+                    <p>Brent Weeks</p>
+                    <p>Price:Rs. 570</p>
+                    <button onclick="addToCart('The Black Prism', 570)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="fantasy"> 
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSlYRU1nNyNlD8I0_0uQiJ_s7HX5REDoz2vPN47yRxyklF3hitTipQuTQjIi57XF1AsZID-uQ7OlcwWxl6qIhw8IDNxBa7d&usqp=CAE" alt="The Priory of the Orange Tree">
+                    <h3>The Priory of the Orange Tree</h3>
+                    <p>Samantha Shannon</p>
+                    <p>Price:Rs. 720</p>
+                    <button onclick="addToCart('The Priory of the Orange Tree', 720)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="fantasy"> 
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTTaBEQ19nXv_4n9NvcyBYBc4Rh9xG00zxfj6RX8LjghcXQuKiCDZ3ZrS0e7uxmal_mt14wkr_MNPhOHzgXY6-_j_PYtHNvzzQpf5jhq_EKOTV7CZwgqUmj&usqp=CAE" alt="Uprooted">
+                    <h3>Uprooted</h3>
+                    <p>Naomi Novik</p>
+                    <p>Price:Rs. 540</p>
+                    <button onclick="addToCart('Uprooted', 540)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="non-fiction"> 
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRJw3YbrCwTDznxxjfJ4U0LGeaBKfkR1uwtRs5atoG2CSiFs-zOc4nJWFqp0RGYC7Q4UG2i1fBeqQNZIGDs27dqpmZVcxBNhTPJ7fDQZjvKPaqwE5UAlPsJ&usqp=CAE" alt="Sapiens: A Brief History of Humankind">
+                    <h3>Sapiens: A Brief History of Humankind</h3>
+                    <p>Yuval Noah Harari</p>
+                    <p>Price:Rs. 650</p>
+                    <button onclick="addToCart('Sapiens: A Brief History of Humankind', 650)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="non-fiction"> 
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRmHw2ZsCFQ97v-MZJ0Hcf3HMzvdWvSaatjVFkHq9_HEvF1qZXc-x8X20X-h12Sh8p0NfV193nSmLuMASIjKOkFkI_5YioTW2Pv2AWDZ27U&usqp=CAE" alt="Educated">
+                    <h3>Educated</h3>
+                    <p>Tara Westover</p>
+                    <p>Price:Rs. 600</p>
+                    <button onclick="addToCart('Educated', 600)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="non-fiction"> 
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTrRCYJ0F_vAQUEYPuR7cLsqEDTGLZUjUaidGwZVTLhVDLYJtoUsXTY9i5oB4xhia3UP5du8v0tH2RhRq4Uh0Q4LlmGxX5ZekgWi_xd42Mm3O39Gm2R3GXt&usqp=CAE" alt="Becoming">
+                    <h3>Becoming</h3>
+                    <p>Michelle Obama</p>
+                    <p>Price:Rs. 700</p>
+                    <button onclick="addToCart('Becoming', 700)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="non-fiction"> 
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTSXjRisBGya-4tNaMf91mnpkCjnMpFw5h-SID9igbJOpEguqktEbSw_76294e44ZCeYju_6P2DNllE4115YeX88TiC1sfbo1EbutBVzIIOAO_HrRjCIDrz&usqp=CAE" alt="The Immortal Life of Henrietta Lacks">
+                    <h3>The Immortal Life of Henrietta Lacks</h3>
+                    <p>Rebecca Skloot</p>
+                    <p>Price:Rs. 650</p>
+                    <button onclick="addToCart('The Immortal Life of Henrietta Lacks', 650)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="non-fiction"> 
+                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR5x0XQ3SZAuYYqnCtQnsYM4g2UCh1EgLvxwKb3bhmmLcbhERSCzwFduaHYqb5eEH1coSOHrCFE7f1BjtlVSxKjMgjtFK_yFSy9_Ff-cG_Nq9UWZN-ql_72&usqp=CAE" alt="The Wright Brothers">
+                    <h3>The Wright Brothers</h3>
+                    <p>David McCullough</p>
+                    <p>Price:Rs. 500</p>
+                    <button onclick="addToCart('The Wright Brothers', 500)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="non-fiction"> 
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSQY-IM_szR05wnB9rirQWt5O_x_hXy_zfTLwNgLGfGegY6l2eXTCvq3B_yJ3HC7jyC266ANA-845LZ5k0T8V0m_K1ALusNoID2FsLQuSPQinGOT0CtedaJJg&usqp=CAE" alt="Quiet: The Power of Introverts in a World That Can't Stop Talking">
+                    <h3>Quiet: The Power of Introverts in a World That Can't Stop Talking</h3>
+                    <p>Susan Cain</p>
+                    <p>Price:Rs. 550</p>
+                    <button onclick="addToCart('Quiet', 550)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="non-fiction"> 
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRmHw2ZsCFQ97v-MZJ0Hcf3HMzvdWvSaatjVFkHq9_HEvF1qZXc-x8X20X-h12Sh8p0NfV193nSmLuMASIjKOkFkI_5YioTW2Pv2AWDZ27U&usqp=CAE" alt="Educated">
+                    <h3>Educated</h3>
+                    <p>Tara Westover</p>
+                    <p>Price:Rs. 600</p>
+                    <button onclick="addToCart('Educated', 600)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="non-fiction"> 
+                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR3AKloOtkvCI_ItOYsWXDtYTKnqFkRx6difNGr3vpD8NOwCuOk6IWjeGxifJrScTxMnU6snVBJG27Eg-wBttwOz_LAgo-44KWZPQ60tu8TxmTypGK0974W&usqp=CAE" alt="When Breath Becomes Air">
+                    <h3>When Breath Becomes Air</h3>
+                    <p>Paul Kalanithi</p>
+                    <p>Price:Rs. 750</p>
+                    <button onclick="addToCart('When Breath Becomes Air', 750)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <div class="book" data-category="non-fiction"> 
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS6wyo06fcFTo6T-drL6eKYSvPoVrjjOv2lHi76gtWNghiW6Uc6sHX2HqjRWdYXgk4kVennVWXlc8mNV-YyhgzHE0OfPTz9d39hWSfCBGp6&usqp=CAE" alt="Born a Crime">
+                    <h3>Born a Crime</h3>
+                    <p>Trevor Noah</p>
+                    <p>Price:Rs. 600</p>
+                    <button onclick="addToCart('Born a Crime', 600)">Add to Cart</button>
+                    <div class="review-section">
+                      <div class="rating">⭐⭐⭐⭐⭐</div>
+                      <input type="text" class="review-input" placeholder="Write a review...">
+                    </div>
+                  </div>
+                  <!-- Science Books -->
+<div class="book" data-category="science"> 
+    <img src="https://d25xohcupqd66a.cloudfront.net/medium/57_9780593056974_t1.jpg" alt="A Brief History of Time">
+    <h3>A Brief History of Time</h3>
+    <p>Stephen Hawking</p>
+    <p>Price:Rs. 600</p>
+    <button onclick="addToCart('A Brief History of Time', 600)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="science"> 
+    <img src="https://d25xohcupqd66a.cloudfront.net/medium/101_9780801879265_t1_1727320061.jpg" alt="The Selfish Gene">
+    <h3>The Selfish Gene</h3>
+    <p>Richard Dawkins</p>
+    <p>Price:Rs. 550</p>
+    <button onclick="addToCart('The Selfish Gene', 550)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="science"> 
+    <img src="https://d25xohcupqd66a.cloudfront.net/medium/101_9781138910874_t1_1727270506.jpg" alt="The Structure of Scientific Revolutions">
+    <h3>The Structure of Scientific Revolutions</h3>
+    <p>Thomas S. Kuhn</p>
+    <p>Price:Rs. 700</p>
+    <button onclick="addToCart('The Structure of Scientific Revolutions', 700)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="science"> 
+    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS3e6ov_QsHnP649lKwpJesXcZtflFIgeDQ8U-NQzvcfuDkD5uxRFTKB-hTiwWF23KZBLQSjqDlmSrn7FSkl5ddLH8ZhWSiAaedjKXNWvo&usqp=CAE" alt="Cosmos">
+    <h3>Cosmos</h3>
+    <p>Carl Sagan</p>
+    <p>Price:Rs. 650</p>
+    <button onclick="addToCart('Cosmos', 650)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="science"> 
+    <img src="https://d25xohcupqd66a.cloudfront.net/medium/57_9780143422167_t1.jpg" alt="The Gene: An Intimate History">
+    <h3>The Gene: An Intimate History</h3>
+    <p>Siddhartha Mukherjee</p>
+    <p>Price:Rs. 700</p>
+    <button onclick="addToCart('The Gene: An Intimate History', 700)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="science"> 
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRntjJzuz2yiBISLV18LaIXzQuYRoLFMLFGiVHpOdbhN6OZBAAdbY0sVmKeQnYVxW3UwDGJuX4K3UjvF4pKpjSo-GljshHO8yjcPUaol0BltxQmCJMxkmn6Ug&usqp=CAE" alt="The Immortal Life of Henrietta Lacks">
+    <h3>The Immortal Life of Henrietta Lacks</h3>
+    <p>Rebecca Skloot</p>
+    <p>Price:Rs. 600</p>
+    <button onclick="addToCart('The Immortal Life of Henrietta Lacks', 600)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="science"> 
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS-fidkUSKODUX3zOqMScItuNs2465X0e1P8oNKH4_1aIpgytneCgqjkSZefoHtWkhsMRFPw_1S9sBKGcYSUUGfJXETT4WKhLNbRPekon5qmvFozzuqQDdFyg&usqp=CAE" alt="Astrophysics for People in a Hurry">
+    <h3>Astrophysics for People in a Hurry</h3>
+    <p>Neil deGrasse Tyson</p>
+    <p>Price:Rs. 650</p>
+    <button onclick="addToCart('Astrophysics for People in a Hurry', 650)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="science"> 
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTC4FF2u-_4lu-_57_3YeZbc9BwP8ACxP4k4f32D-C-X1gwocaYmocuGECrc8j0ifndBg-hP05_SfE3GektENA7gF8hLdpWTmlSw7-rTK8&usqp=CAE" alt="The Body: A Guide for Occupants">
+    <h3>The Body: A Guide for Occupants</h3>
+    <p>Bill Bryson</p>
+    <p>Price:Rs. 650</p>
+    <button onclick="addToCart('The Body: A Guide for Occupants', 650)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  
+                  <!-- Biography Books -->
+
+<div class="book" data-category="biography"> 
+    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT9nJHwbp3aGTf3m5LRx4hUkejIF1MDmh1ior-WWUMOOhcgfnQdtqPbjfvC7OLZ2nGRvwRvfR6Ktn5iRN2tfaZSx2MezrooJc3jId6tc3TXGIFco4-MESwmZw&usqp=CAE" alt="Steve Jobs">
+    <h3>Steve Jobs</h3>
+    <p>Walter Isaacson</p>
+    <p>Price:Rs. 800</p>
+    <button onclick="addToCart('Steve Jobs', 800)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="biography"> 
+    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTm7ZUszYWAGJu2lQYmFCDuPo1tv3PdBa1aQKQZ9QERXEkErvwWApB4A1P4_bYXpy3DdWrHvORuGCYUU4svsfmAz7snXPlHF7x4qPaLGbOBEmL4zKGwJWQT2w&usqp=CAE" alt="Long Walk to Freedom">
+    <h3>Long Walk to Freedom</h3>
+    <p>Nelson Mandela</p>
+    <p>Price:Rs. 700</p>
+    <button onclick="addToCart('Long Walk to Freedom', 700)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="biography"> 
+    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTyjbP3EsG5YIgVaMGiO5R5cBok_bLbeUniDjXCyNYsPnPBuVrSRTvXG6UlNZEPU27Yx6X6MJmkXJQX9lPlToAkCm1Mglb-dgqAxF7TR1G8j-d1aCSfre6_ow&usqp=CAE" alt="The Diary of a Young Girl">
+    <h3>The Diary of a Young Girl</h3>
+    <p>Anne Frank</p>
+    <p>Price: ₹500</p>
+    <button onclick="addToCart('The Diary of a Young Girl', 500)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="biography"> 
+    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQC2XWpLLE7E4cAGjsnk5JrnzMylbjEreOf4-fiZtfEa1EIRS5h9Koikcuz41mvbkJtiYnrHCYtkJcKEnkFs5pOhfFS7v4tGpDNmXXTh4ns&usqp=CAE" alt="The Story of My Life">
+    <h3>The Story of My Life</h3>
+    <p>Helen Keller</p>
+    <p>Price:Rs. 450</p>
+    <button onclick="addToCart('The Story of My Life', 450)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="biography"> 
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTwXll_Zyx_BAWO2JCxrGcZ4e0jbezoLppJS5D6KW0wJHknzhsXI200wnDdyQAqDSmmAzsyhrVilLgl5M7NPmxy600hH14JbRmhp1JdFoI&usqp=CAE" alt="I Am Malala">
+    <h3>I Am Malala</h3>
+    <p>Malala Yousafzai</p>
+    <p>Price:Rs. 550</p>
+    <button onclick="addToCart('I Am Malala', 550)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="biography"> 
+    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS1rfJTyiwv7FraAYE5eQHPvpoW2uiQAZImb1_nzERXWsw_9ImAcKma74yoVbxJ6LnZww5bDqWS1feVjbX1JwgLmv7hYWi_uO05D6UjGwxz&usqp=CAE" alt="Becoming">
+    <h3>Becoming</h3>
+    <p>Michelle Obama</p>
+    <p>Price:Rs. 700</p>
+    <button onclick="addToCart('Becoming', 700)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="biography"> 
+    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ8jZ3cJKsoBK-FOj2kJ8Fq_7FqjStmOwT6y9JTym25_8w6ENJ4Vp0E48AG_GZVlLf8EdPskMEPtVCcregyj-UsWRkZuEuuTl3vWSKAIoV6EX81tUqoKiNg&usqp=CAE" alt="The Glass Castle">
+    <h3>The Glass Castle</h3>
+    <p>Jeannette Walls</p>
+    <p>Price:Rs. 500</p>
+    <button onclick="addToCart('The Glass Castle', 500)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="biography"> 
+    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQmYLADrqr9sjfYzaH2h16NSfpivWCAoRY-vWcr0PeDdqytOGyIKy6j6e60W7aJnyjwWGOb2Q6lOlkV-HrmyEGJpxdz2N_P5KAyYc96MaitBjrSfcUnup83Nw&usqp=CAE" alt="The Autobiography of Malcolm X">
+    <h3>The Autobiography of Malcolm X</h3>
+    <p>Malcolm X</p>
+    <p>Price:Rs. 600</p>
+    <button onclick="addToCart('The Autobiography of Malcolm X', 600)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="bestseller"> 
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQjodljRhGFEePoeaLT3L9VY1Vu2mjaLUwwn-RYQ_PVTgSmEu_hvGkPyiAqHGjf4jsyyO7wyv2qw9d7sFc0u6783sTZGyAu1DZOhW2RBYQ&usqp=CAE" alt="Where the Crawdads Sing">
+    <h3>Where the Crawdads Sing</h3>
+    <p>Delia Owens</p>
+    <p>Price:Rs. 600</p>
+    <button onclick="addToCart('Where the Crawdads Sing', 600)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="bestseller"> 
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQuIo8isikltOFjopawKs4Z7AnHmQ6ZHs9JYK3QMHrraHobz-sIBjd-AXl140FPPgs7yMLj6VmZP5IS8uOR4VSIpwGlftnRAHqUtsOEQNyk&usqp=CAE" alt="The Vanishing Half">
+    <h3>The Vanishing Half</h3>
+    <p>Brit Bennett</p>
+    <p>Price:Rs. 700</p>
+    <button onclick="addToCart('The Vanishing Half', 700)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="bestseller"> 
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRUFQLAcFZLYRxm-uTafekekUMrSuT8Yg1PebwLHR9KkY2R4Q8Jfoar3C_d7JDQJhAfyMsyUWEpsR6yPHGMyIymU7E_PXhOTAVkpzQdI3ltCriUMfqRPzW-Gg&usqp=CAE" alt="The Midnight Library">
+    <h3>The Midnight Library</h3>
+    <p>Matt Haig</p>
+    <p>Price:Rs. 650</p>
+    <button onclick="addToCart('The Midnight Library', 650)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="bestseller"> 
+    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ7qKbkpal1PPrH_DMQxYdMbXPIda58ILd_CdYhKIQ4_Gd62RR6y72ff0TVXfnIQsXHhlQ_-TwrwXPST1yBba8iSuxwN2FzmCK8Rx1QjdMk&usqp=CAE" alt="It Ends with Us">
+    <h3>It Ends with Us</h3>
+    <p>Colleen Hoover</p>
+    <p>Price:Rs. 600</p>
+    <button onclick="addToCart('It Ends with Us', 600)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="bestseller"> 
+    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS8rublDd1quxgkcItibt7CP1_Y8pm7ijJwkr0oBrB-AWNXY-G6qk16X2_3R6MUvl9ae5-zEli9XoCnomUUrPnhh_8I0uPp4a9gQtkSsUxpWv3NiAyCfyKF&usqp=CAE" alt="The Four Winds">
+    <h3>The Four Winds</h3>
+    <p>Kristin Hannah</p>
+    <p>Price:Rs. 700</p>
+    <button onclick="addToCart('The Four Winds', 700)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="bestseller"> 
+    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR6VxL1ZNgifrfmyIQy8aG_4pRbJ1k9NYp3NtbOKlKR5L3gznfLzaKqgOLbx0Cs7et61vPv0sUx-RZz38VL5Wpe7QzM3gzYncFZq8cWz4k&usqp=CAE" alt="The Silent Patient">
+    <h3>The Silent Patient</h3>
+    <p>Alex Michaelides</p>
+    <p>Price:Rs. 650</p>
+    <button onclick="addToCart('The Silent Patient', 650)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  <div class="book" data-category="bestseller"> 
+    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQN2AUIGlP0OMoqN5Txyf0ymhJBHKG8ND9pIxPxMw3r2Uv7EZvxuqIkekrnc_jVs1VXN5CeFUqATeePGFiRzASTxEnMmwISxpqWrAGDp5xf95lWaMi0_ShC&usqp=CAE" alt="Anxious People">
+    <h3>Anxious People</h3>
+    <p>Fredrik Backman</p>
+    <p>Price:Rs. 700</p>
+    <button onclick="addToCart('Anxious People', 700)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  
+  
+  <div class="book" data-category="biography"> 
+    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRowZLVUjpHgiBTNJrAFrRwe1-vzxG36iVx6apylBsEyvD_SwgCPSf-n6Ftaf7tgGg17Aq1teYsepKdHJ9-5cB9tmhRi8EAVvcOLtficWHL&usqp=CAE" alt="The Long Hard Road Out of Hell">
+    <h3>The Long Hard Road Out of Hell</h3>
+    <p>Marilyn Manson</p>
+    <p>Price:Rs. 650</p>
+    <button onclick="addToCart('The Long Hard Road Out of Hell', 650)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+     
+
+
+  <div class="book" data-category="Home">
+    <img src="https://www.bookswagon.com/productimages/images200/986/9780143447986.jpg" alt="Book 1">
+    <h3>30 Days to better english</h3>
+    <p>Liwes Norman</p>
+    <p>Price: Rs. 119</p>
+    <button onclick="addToCart('30 Days to better english', 119)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+<!-- Book 2 -->
+<div class="book" data-category="Home">
+    <img src="https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/086/9780241252086.jpg" alt="Book 2">
+    <h3>White Nights</h3>
+    <p>Ronald Mayer</p>
+    <p>Price: Rs. 75</p>
+    <button onclick="addToCart('White Nights', 75)">Add to Cart</button>
+    <div class="review-section">
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+</div>
+<!-- Book 3 -->
+<div class="book" data-category="Home">
+    <img src="https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/538/9780593357538.jpg" alt="Book 3">
+    <h3>Fire & Blood</h3>
+    <p>George .R.R</p>
+    <p>Price: Rs. 450</p>
+    <button onclick="addToCart('Fire & Blood', 450)">Add to Cart</button>
+    <div class="review-section">
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+</div>
+<!-- Book 4 -->
+<div class="book" data-category="Home">
+    <img src="https://www.bookswagon.com/productimages/images200/478/9789355991478.jpg" alt="Book 4">
+    <h3>Ikigia</h3>
+    <p>Keira Miki</p>
+    <p>Price: Rs. 950</p>
+    <button onclick="addToCart('Ikigia', 950)">Add to Cart</button>
+    <div class="review-section">
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+</div>
+
+
+<div class="book" data-category="Home"> 
+<img src="https://d25xohcupqd66a.cloudfront.net/medium/57_9780593056974_t1.jpg" alt="A Brief History of Time">
+<h3>A Brief History of Time</h3>
+<p>Stephen Hawking</p>
+<p>Price: Rs. 600</p>
+<button onclick="addToCart('A Brief History of Time', 600)">Add to Cart</button>
+<div class="review-section">
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<input type="text" class="review-input" placeholder="Write a review...">
+</div>
+</div>
+<div class="book" data-category="Home"> 
+<img src="https://d25xohcupqd66a.cloudfront.net/medium/101_9780801879265_t1_1727320061.jpg" alt="The Selfish Gene">
+<h3>The Selfish Gene</h3>
+<p>Richard Dawkins</p>
+<p>Price: Rs. 550</p>
+<button onclick="addToCart('The Selfish Gene', 550)">Add to Cart</button>
+<div class="review-section">
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<input type="text" class="review-input" placeholder="Write a review...">
+</div>
+</div>
+<div class="book" data-category="Home"> 
+<img src="https://d25xohcupqd66a.cloudfront.net/medium/101_9781138910874_t1_1727270506.jpg" alt="The Structure of Scientific Revolutions">
+<h3>The Structure of Scientific Revolutions</h3>
+<p>Thomas S. Kuhn</p>
+<p>Price: Rs. 700</p>
+<button onclick="addToCart('The Structure of Scientific Revolutions', 700)">Add to Cart</button>
+<div class="review-section">
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<input type="text" class="review-input" placeholder="Write a review...">
+</div>
+</div>
+<div class="book" data-category="Home"> 
+<img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS3e6ov_QsHnP649lKwpJesXcZtflFIgeDQ8U-NQzvcfuDkD5uxRFTKB-hTiwWF23KZBLQSjqDlmSrn7FSkl5ddLH8ZhWSiAaedjKXNWvo&usqp=CAE" alt="Cosmos">
+<h3>Cosmos</h3>
+<p>Carl Sagan</p>
+<p>Price: Rs. 650</p>
+<button onclick="addToCart('Cosmos', 650)">Add to Cart</button>
+<div class="review-section">
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<input type="text" class="review-input" placeholder="Write a review...">
+</div>
+</div>
+<div class="book" data-category="Home"> 
+<img src="https://d25xohcupqd66a.cloudfront.net/medium/57_9780143422167_t1.jpg" alt="The Gene: An Intimate History">
+<h3>The Gene: An Intimate History</h3>
+<p>Siddhartha Mukherjee</p>
+<p>Price: Rs. 700</p>
+<button onclick="addToCart('The Gene: An Intimate History', 700)">Add to Cart</button>
+<div class="review-section">
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<input type="text" class="review-input" placeholder="Write a review...">
+</div>
+</div>
+<div class="book" data-category="Home"> 
+<img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRntjJzuz2yiBISLV18LaIXzQuYRoLFMLFGiVHpOdbhN6OZBAAdbY0sVmKeQnYVxW3UwDGJuX4K3UjvF4pKpjSo-GljshHO8yjcPUaol0BltxQmCJMxkmn6Ug&usqp=CAE" alt="The Immortal Life of Henrietta Lacks">
+<h3>The Immortal Life of Henrietta Lacks</h3>
+<p>Rebecca Skloot</p>
+<p>Price: Rs. 600</p>
+<button onclick="addToCart('The Immortal Life of Henrietta Lacks', 600)">Add to Cart</button>
+<div class="review-section">
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<input type="text" class="review-input" placeholder="Write a review...">
+</div>
+</div>
+<div class="book" data-category="Home"> 
+<img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS-fidkUSKODUX3zOqMScItuNs2465X0e1P8oNKH4_1aIpgytneCgqjkSZefoHtWkhsMRFPw_1S9sBKGcYSUUGfJXETT4WKhLNbRPekon5qmvFozzuqQDdFyg&usqp=CAE" alt="Astrophysics for People in a Hurry">
+<h3>Astrophysics for People in a Hurry</h3>
+<p>Neil deGrasse Tyson</p>
+<p>Price: Rs. 650</p>
+<button onclick="addToCart('Astrophysics for People in a Hurry', 650)">Add to Cart</button>
+<div class="review-section">
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<input type="text" class="review-input" placeholder="Write a review...">
+</div>
+</div>
+<div class="book" data-category="Home"> 
+<img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTC4FF2u-_4lu-_57_3YeZbc9BwP8ACxP4k4f32D-C-X1gwocaYmocuGECrc8j0ifndBg-hP05_SfE3GektENA7gF8hLdpWTmlSw7-rTK8&usqp=CAE" alt="The Body: A Guide for Occupants">
+<h3>The Body: A Guide for Occupants</h3>
+<p>Bill Bryson</p>
+<p>Price: Rs. 650</p>
+<button onclick="addToCart('The Body: A Guide for Occupants', 650)">Add to Cart</button>
+<div class="review-section">
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<input type="text" class="review-input" placeholder="Write a review...">
+</div>
+</div>
+
+<!-- Book 5 -->
+<div class="book" data-category="Home">
+    <img src="https://www.bookswagon.com/productimages/images200/181/9781405293181.jpg" alt="Book 5">
+    <h3>A Good Girls Guide Murder</h3>
+    <p>Holly Jackson</p>
+    <p>Price: Rs. 324</p>
+    <button onclick="addToCart('Book Title 5', 700)">Add to Cart</button>
+    <div class="review-section">
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+</div>
+<!-- Book 6 -->
+<div class="book" data-category="Home"> 
+    <img src="https://www.bookswagon.com/productimages/mainimages/652/9781408855652.jpg" alt="Harry Potter and the Sorcerer's Stone">
+    <h3>Harry Potter and the Sorcerer's Stone</h3>
+    <p>J.K. Rowling</p>
+    <p>Price: Rs. 789</p>
+    <button onclick="addToCart('Harry Potter and the Sorcerer\'s Stone', 500)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+
+  <div class="book" data-category="Home"> 
+    <img src="https://www.bookswagon.com/productimages/mainimages/669/9781408855669.jpg" alt="Harry Potter and the Chamber of Secrets">
+    <h3>Harry Potter and the Chamber of Secrets</h3>
+    <p>J.K. Rowling</p>
+    <p>Price: Rs. 690</p>
+    <button onclick="addToCart('Harry Potter and the Chamber of Secrets', 500)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+
+  <div class="book" data-category="Home"> 
+    <img src="https://www.bookswagon.com/productimages/mainimages/676/9781408855676.jpg" alt="Harry Potter and the Prisoner of Azkaban">
+    <h3>Harry Potter and the Prisoner of Azkaban</h3>
+    <p>J.K. Rowling</p>
+    <p>Price: Rs. 386</p>
+    <button onclick="addToCart('Harry Potter and the Prisoner of Azkaban', 500)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+
+  <div class="book" data-category="Home"> 
+    <img src="https://www.bookswagon.com/productimages/mainimages/683/9781408855683.jpg" alt="Harry Potter and the Goblet of Fire">
+    <h3>Harry Potter and the Goblet of Fire</h3>
+    <p>J.K. Rowling</p>
+    <p>Price: Rs. 540</p>
+    <button onclick="addToCart('Harry Potter and the Goblet of Fire', 500)">Add to Cart</button>
+    <div class="review-section">
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <input type="text" class="review-input" placeholder="Write a review...">
+    </div>
+  </div>
+  
+                  
+            </div>
+            <aside class="cart">
+                <h2>Cart Total</h2>
+                <p>Total Books: <span id="total-books">0</span></p>
+                <p>Total Price: Rs. <span id="total-price">0</span></p>
+                <p>Selected Books: <span id="selected-books">none</span></p>
+                <button onclick="buyBooks()">Buy Now</button>
+            </aside>
+        </div>
+           <!-- Circular AI Recommendation Button -->
+    <div class="ai-circle" onclick="openModal()">
+      <p>AI<br>Rec</p>
+  </div>
+  <!-- AI Recommendation Modal -->
+  <div id="ai-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-btn" onclick="closeModal()">&times;</span>
+          <h2>AI Recommendation</h2>
+          <p>Select a category or enter a keyword to get book recommendations!</p>
+          <select id="ai-category">
+              <option value="" disabled selected>Select Category</option>
+              <option value="romance">Romance</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="fiction">Fiction</option>
+              <option value="nonfiction">Non-fiction</option>
+              <option value="science">Science</option>
+              <option value="trending">Trending</option>
+          </select>
+          <button onclick="processAI()">Get Recommendations</button>
+          <div id="ai-processing" style="display: none;">
+              <p>Processing...</p>
+              <img src="https://via.placeholder.com/50?text=🔄" alt="Processing">
+          </div>
+          <div id="ai-output" style="display: none;">
+              <h3>Recommended Books</h3>
+              <ul id="ai-recommendations"></ul>
+          </div>
+      </div>
+  </div>
+
+        <div class="donate-section" id="donateSection">
+            <h2>Donate Books</h2>
+            <p>Your contribution helps us build a community of readers! Please fill out the form below:</p>
+            <form>
+                <label for="book-title">Book Title:</label>
+                <input type="text" id="book-title" class="review-input" required><br>
+                <label for="book-author">Book Author:</label>
+                <input type="text" id="book-author" class="review-input" required><br>
+                <label for="book-condition">Condition:</label>
+                <select id="book-condition" class="review-input">
+                    <option value="new">New</option>
+                    <option value="used">Used</option>
+                    <option value="damaged">Damaged</option>
+                </select><br>
+                <button type="submit">Submit Donation</button>
+            </form>
+        </div>
+        <section id="exchangeBooksSection" class="exchange-books-section">
+            <h2>Exchange Books</h2>
+            <p>Find someone to exchange books with! Browse available books, or offer your own to trade.</p>
+            <div class="exchange-book-grid">
+                <div class="exchange-book-item">Book 1</div>
+                <div class="exchange-book-item">Book 2</div>
+                <div class="exchange-book-item">Book 3</div>
+                <!-- Add more book items as needed -->
+            </div>
+        </section>
+    
+        <div class="community-events" id="communityEvents" style="display: none;">
+            <h2>Community and Events</h2>
+            <p>Join our community events and activities!</p>
+            <img src="https://media.istockphoto.com/id/1472932742/photo/group-of-multigenerational-people-hugging-each-others-support-multiracial-and-diversity.jpg?s=612x612&w=0&k=20&c=Zm1MthU_G_LzfjBFBaMORRnuBhMsCjPQ38Ksfg4zl9g=" alt="Community Event">
+            <p>Stay tuned for our book fairs, readings, and more!</p>
+           
+        </div>
+        
+        <div class="advertisement">
+            <p>Check out our latest arrivals and special promotions!</p>
+        </div>
+      
+    </main>
+
+
+    <footer id="footer">
+        <div>
+            <p>&copy; 2024 API BOOKSTORE. All rights reserved.</p>
+            <p>Contact us at: <strong>(123) 456-7890</strong> or <strong>API@bookstore.com</strong></p>
+             <p><strong>(456) 456-7890</strong> or <strong>UPI@bookstore.com</strong></p>
+             <p><strong>(789) 456-7890</strong> or <strong>KESHAV@bookstore.com</strong></p>
+             <p><strong>(456) 456-7890</strong> or <strong>SARVAN@bookstore.com</strong></p>
+            <div class="social-icons">
+              
+                <a href="#"><img src="data:image/jpeg;base64,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" alt="Facebook"></a>
+                <a href="#"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADACAMAAAB/Pny7AAAAY1BMVEU7V53///82U5vi5u9merHFy+BWbalVaqb8/P5LZKRQZqXN0uTV2uj4+fyDk762vtchRpWgrM0wT5koSpfc4OxDXaCap8pacavx8/fs7vVzhLWJl76RncR6i7hrfbCpss8VQJJ/sDjpAAADJklEQVR4nO3bbY+iMBiFYfcBlFfRAgoCMv//V67uzGQnu8ECpvTQnPvDJGNiwpXyZgu7HWOMMcYYY4wxxhhjziWiHol8/SPP/4vPj74+3EiiiqLa+7dj212+69r2eOxvt7t/jatKimIbInUSvx3ypPTqus6+q581nuelSZDnw3DZ295ObY+daXcfkrL+NV7452/Wgw/N42iIu6TJXkj+dsTGiPiDN00CjzlF52aqBBwjRVfOoEBj1CGYRQHGiPTzhgUYI1U352iBxkg868jHxlTnV9fIbWFUt8SCiTm1iyyQGLX3FlkQMXKae30BxqhhoQUQo24LTsqgGKnypRZATL94YOAwUgWhMxj1xsDgYZYfMXAY5c++78fFFJflRwwaRnbv7GVgmPf2MjCMtO/sZVgYqebcloXZv2Fh4mn3y1lTPqeXh/M/XW0Dfib+lB8yTTL0sfr4OP0X0sA87sv0vzDDpN1vYvFCOu20cphf1QYkz85aTLBXtjdyYlWuOzOn/kaG5XFmTjSW+mJ7Gycnke76n163MjA7OWgw2VBtB7PXYOrO9iZOT64aTIO+Avsj7Q2Ad9vKeXkCJvUdwiTbOZlpMaFTmGBPjJWIQY0Y1IhBjRjUiEGNGNSIQY0Y28lISos5qLHv2nrrJDqM1evmAPwoftH6FIkuSTpSqVkEqNPkRcH6E1ES5ZNfVJhXc3cIY2GJwBwmOTiEyddf7zCHGdafiDaHOTuEqTuHMM3RIUx5X/9+xhjGxkq0MUwSOYQJLCyrm8KE+c4djJUnUUxhmtYhjGfjgQdTmNLGw1umMFYeeDKFSWJ3MGFu4ZppCpOdq/UtpjB2Hng0hWltPPBkCNP0DmHK9SfNzGHSqzuYMLBxmTGFsTBp9ol56+2lEYyFSbMnJs6zcCztNo+VXQobmJfrM6/fng2Tezz2VRvX/2ejK19vrZxZwoy2yTXNsYhBjRjUiEGNGNSIQY0Y1IhBjRjUiEGNGNSIQY0Y1IhBjRjUiEGNGNSIQY0Y1IhBjRjUiEGNGNSIQY0Y1IhBjRjUiEGNGNSIQY0Y1IhBjRjUiEGNGNSImdNvEnlPuOevTYoAAAAASUVORK5CYII=" alt="Instagram"></a>
+                <a href="#"><img src="data:image/png;base64,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" alt="Twitter"></a>
+            
+            </div>
+        </div>
+    </footer>
+
+<script src="hpscript.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment and Order Tracking</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://img.freepik.com/premium-photo/book-stack-library-room-blurred-bookshelf-background_42691-514.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(1px);
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #4CAF50;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .section {
+            width: 90%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .payment-options label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #4CAF50;
+            cursor: pointer;
+        }
+
+        .payment-options input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #4CAF50, #81C784);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #388E3C, #66BB6A);
+        }
+
+        .order-status {
+            margin-top: 20px;
+        }
+
+        .order-status p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .success-message {
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        /* Address Form Styling */
+        .address-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .address-form input:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+
+        .address-form label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #4CAF50;
+            text-align: left;
+            display: block;
+        }
+
+        .address-form button {
+            background: linear-gradient(135deg, #4CAF50, #81C784);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .address-form button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #388E3C, #66BB6A);
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 15px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .section h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                font-size: 24px;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Payment and Order Tracking
+    </header>
+
+    <main>
+        <!-- Address Form Section -->
+        <div class="section">
+            <h2>Enter Your Address</h2>
+            <form id="address-form" class="address-form">
+                <label for="address-line1">Address Line 1</label>
+                <input type="text" id="address-line1" name="address-line1" required placeholder="Enter your street address" />
+
+                <label for="address-line2">Address Line 2</label>
+                <input type="text" id="address-line2" name="address-line2" placeholder="Apartment, Suite, etc." />
+
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required placeholder="Enter your city" />
+
+                <label for="zip-code">Zip Code</label>
+                <input type="text" id="zip-code" name="zip-code" required placeholder="Enter your zip code" />
+
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" required placeholder="Enter your country" />
+
+                <button type="button" class="btn" onclick="submitAddress()">Submit Address</button>
+            </form>
+        </div>
+
+        <!-- Payment Options Section -->
+        <div class="section">
+            <h2>Choose Your Payment Method</h2>
+            <div class="payment-options">
+                <label>
+                    <input type="radio" name="payment-method" value="cod"> Cash on Delivery
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="card"> Online Payment (Credit/Debit Card)
+                </label>
+            </div>
+            <button class="btn" onclick="processPayment()">Pay</button>
+        </div>
+
+        <!-- Order Status Section -->
+        <div class="section order-status" id="order-status-section" style="display: none;">
+            <h2>Order Tracking</h2>
+            <p id="payment-status"></p>
+            <p>Track your order status here: <span class="success-message">Processing</span></p>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 API BOOKSTORE. All rights reserved.
+    </footer>
+
+    <script>
+        // Function to submit address form
+        function submitAddress() {
+            const addressLine1 = document.getElementById("address-line1").value;
+            const addressLine2 = document.getElementById("address-line2").value;
+            const city = document.getElementById("city").value;
+            const zipCode = document.getElementById("zip-code").value;
+            const country = document.getElementById("country").value;
+
+            if (!addressLine1 || !city || !zipCode || !country) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            alert("Address submitted successfully!");
+            // Optionally, store the address in a variable or send it to a server here
+        }
+
+        // Function to process the payment
+        function processPayment() {
+            const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
+            const statusSection = document.getElementById("order-status-section");
+            const paymentStatus = document.getElementById("payment-status");
+
+            if (!selectedMethod) {
+                alert("Please select a payment method.");
+                return;
+            }
+
+            if (selectedMethod.value === "cod") {
+                paymentStatus.innerText = "Payment Method: Cash on Delivery. Please pay when the order arrives.";
+            } else if (selectedMethod.value === "card") {
+                paymentStatus.innerText = "Payment Successful. Thank you for paying online.";
+            }
+
+            statusSection.style.display = "block";
+        }
+    </script>
+</body>
+</html>
